@@ -7,5 +7,5 @@ import config from './lost.config.ts';
 export default defineAddon(
     new Plugin<EditorInstance, EditorType>(config)
         /** @Properties */
-        
+        .addProperty('model-id', 'Model Id', { type: Property.Text })       
 )

@@ -2,22 +2,21 @@ import { defineConfig } from "./deps.ts";
 
 export default defineConfig<'plugin'>({
     type: 'plugin',
-    pluginType: 'object',
+    pluginType: 'world',
     // deprecated?: boolean;
     // minConstructVersion?: string;
-    // canBeBundled?: boolean;
-    isSingleGlobal: true,
-    objectName: 'LostPlugin',
-
-    addonId: 'LostPluginId',
+    canBeBundled: false,
+    objectName: 'RenderaController',
+    addonId: 'renderaController',
     category: 'general',
-    addonName: 'Lost plugin for Construct 3',
-    addonDescription: 'My awesome addon was made with Lost',
-    version: '1.0.0.0',
-    author: 'lostinmind.',
-    docsUrl: 'https://myaddon.com/docs',
+    minConstructVersion: 'r416',
+    addonName: 'Rendera controller for Construct 3',
+    addonDescription: 'Rendera controller for Construct 3',
+    version: '1.0.0',
+    author: 'Mikal',
+    docsUrl: 'https://kindeyegames.itch.io/rendera-controller',
     helpUrl: {
-        EN: 'https://myaddon.com/help/en'
+        EN: 'https://kindeyegames.itch.io/rendera-controller'
     },
-    websiteUrl: 'https://myaddon.com'
+    websiteUrl: 'https://kindeyegames.itch.io/rendera-controller'
 })

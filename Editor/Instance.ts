@@ -1,5 +1,8 @@
-class LostEditorInstance extends SDK.IInstanceBase {
-	constructor(sdkType: SDK.ITypeBase, inst: SDK.IObjectInstance) {
+const SDK = globalThis.SDK;
+
+class RenderaControllerInstance extends SDK.IWorldInstanceBase {
+	private modelId = ''
+	constructor(sdkType: SDK.ITypeBase, inst: SDK.IWorldInstance) {
 		super(sdkType, inst);
 	}
 	
@@ -8,7 +11,6 @@ class LostEditorInstance extends SDK.IInstanceBase {
 	}
 	
 	OnCreate() {
-
 	}
 	
 	OnPropertyChanged(id: string, value: EditorPropertyValueType) {
@@ -18,7 +20,70 @@ class LostEditorInstance extends SDK.IInstanceBase {
 	LoadC2Property(name: string, valueString: string) {
 		return false;		// not handled
 	}
-};
 
+	Draw(iRenderer: SDK.Gfx.IWebGLRenderer, iDrawParams: SDK.Gfx.IDrawParams)
+	{
+		const texture = this.GetTexture();
+		
+		if (texture)
+		{
+			this._inst.ApplyBlendMode(iRenderer);
+			iRenderer.SetTexture(texture);
+			iRenderer.SetColor(this._inst.GetColor());
+			iRenderer.Quad3(this._inst.GetQuad(), this.GetTexRect());
+		}
+		else
+		{
+			// render placeholder
+			iRenderer.SetAlphaBlend();
+			iRenderer.SetColorFillMode();
+			
+			if (this.HadTextureError())
+				iRenderer.SetColorRgba(0.25, 0, 0, 0.25);
+			else
+				iRenderer.SetColorRgba(0, 0, 0.1, 0.1);
+			
+			iRenderer.Quad(this._inst.GetQuad());
+		}
+	}
+	
+	GetTexture()
+	{
+		const image = this.GetObjectType().GetImage();
+		return super.GetTexture(image);
+	}
+	
+	IsOriginalSizeKnown()
+	{
+		return true;
+	}
+	
+	GetOriginalWidth()
+	{
+		return this.GetObjectType().GetImage().GetWidth();
+	}
+	
+	GetOriginalHeight()
+	{
+		return this.GetObjectType().GetImage().GetHeight();
+	}
+	
+	OnMakeOriginalSize()
+	{
+		const image = this.GetObjectType().GetImage();
+		this._inst.SetSize(image.GetWidth(), image.GetHeight());
+	}
+	
+	HasDoubleTapHandler()
+	{
+		return true;
+	}
+	
+	OnDoubleTap()
+	{
+		this.GetObjectType().EditImage();
+	}
+}
 /** Important to save export type for Typescript compiler */
-export type { LostEditorInstance as EditorInstance };
+export type { RenderaControllerInstance as EditorInstance };
+

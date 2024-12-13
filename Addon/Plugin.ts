@@ -1,8 +1,8 @@
-class LostPlugin extends globalThis.ISDKPluginBase {
+class RenderaController extends globalThis.ISDKPluginBase {
 	constructor() {
 		super();
 	}
 };
 
 /** Important to save export type for Typescript compiler */
-export type { LostPlugin };
+export type { RenderaController };
