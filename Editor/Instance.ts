@@ -4,6 +4,7 @@ class RenderaControllerInstance extends SDK.IWorldInstanceBase {
 	private modelId = ''
 	constructor(sdkType: SDK.ITypeBase, inst: SDK.IWorldInstance) {
 		super(sdkType, inst);
+		console.log('RenderaControllerInstance', sdkType, inst);
 	}
 	
 	Release() {
@@ -23,8 +24,17 @@ class RenderaControllerInstance extends SDK.IWorldInstanceBase {
 
 	Draw(iRenderer: SDK.Gfx.IWebGLRenderer, iDrawParams: SDK.Gfx.IDrawParams)
 	{
+		// console.log('Draw', iRenderer, iDrawParams);
+		const rendera = globalThis.mikalRenderaEditor;
+		if (rendera) {
+			if (!rendera.initialized && !rendera.initializing) {
+				rendera.initializing = true;
+				rendera.initialize();
+			}
+			return;
+		}
+
 		const texture = this.GetTexture();
-		
 		if (texture)
 		{
 			this._inst.ApplyBlendMode(iRenderer);
