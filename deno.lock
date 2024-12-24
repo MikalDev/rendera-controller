@@ -5,7 +5,7 @@
     "jsr:@lost-c3/lib@3.2.2": "3.2.2",
     "jsr:@lost-c3/lib@3.2.3": "3.2.3",
     "jsr:@lost-c3/lib@3.3.2": "3.3.2",
-    "jsr:@lost-c3/lib@3.3.3": "3.3.3",
+    "jsr:@lost-c3/lib@3.3.5": "3.3.5",
     "jsr:@std/cli@1.0.6": "1.0.6",
     "jsr:@std/fmt@1.0.2": "1.0.2",
     "jsr:@std/fs@1": "1.0.6",
@@ -63,7 +63,7 @@
         "npm:uglify-js"
       ]
     },
-    "@lost-c3/lib@3.3.3": {
+    "@lost-c3/lib@3.3.5": {
       "integrity": "612a267527b860bc8ae35eeb4be43a0dd19c1fb384dd15a0e157a08faafb448b",
       "dependencies": [
         "jsr:@std/cli",
