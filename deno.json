@@ -10,7 +10,9 @@
     "tasks": {
         "dev": "lost build --watch",
         "build": "lost build",
-        "serve": "lost serve"
+        "serve": "lost serve",
+        "post-build": "deno run --allow-read --allow-write --allow-run Tools/post-build.ts",
+        "bp": "lost build && deno run --allow-read --allow-write --allow-run Tools/post-build.ts"
     },
     "imports": {
         "@Runtime/": "./Addon/",
